@@ -1,0 +1,17 @@
+Mastercard:Chase:Freedom Flex:P,2:SUB:20000,500,3:Categories:quarterly-5,travel(Chase)-5,dining-3,drugstores-3,else-1
+Visa:Chase:Freedom Unlimited:P,2:SUB:20000,500,3:Categories:travel(Chase)-5,dining-3,drugstores-3,else-1.5
+Visa:Chase:Sapphire Preferred:P,2:SUB:60000,4000,3:Categories:travel-2,dining-2,else-1
+Visa:Chase:Sapphire Reserve:P,2:SUB:50000,4000,3:Categories:travel-3,dining-3,else-1
+Visa:Chase:Amazon Prime Rewards:C:SUB:100,0,0:Categories:online shopping(Amazon)-5,grocery(Whole Foods)-5,else-1
+Mastercard:Chase:IHG Rewards Club Premier:P,0.6:SUB:140000,3000,3:Categories:hotel(IHG)-25,gas-2,grocery-2,restaurant-2,else-1
+Mastercard:Citi:Double Cash:C:SUB:0,0,0:Categories:else-2
+AMEX:AMEX:Gold:P,2:SUB:60000,4000,6:Categories:dining-4,grocery-4,travel(AMEX)-3,else-1
+AMEX:AMEX:Platinum:P,2:SUB:75000,4000,3:Categories:travel(AMEX)-5,travel-5,else-1
+AMEX:AMEX:Green:P,2:SUB:45000,2000,3:Categories:dining-3,travel-3,transit-3,else-1
+AMEX:AMEX:Blue Cash Preferred:C:SUB:300,3000,6:Categories:grocery-6,streaming-6,transit-3,gas-3,else-1
+Discover:Discover:Discover It:C:SUB:0,0,0:Categories:quarterly-5,else-1
+AMEX:Wells Fargo:Propel:P,1:SUB:20000,1000,3:Categories:dining-3,gas-3,transit-3,travel-3,streaming-3,else-1
+Visa:Wells Fargo:Cash Wise:C:SUB:150,500,3:Categories:else-1.5
+END
+This file will store all of the credit cards that will work with this program.
+They are stored in the format Network:Issuer:Name:Cash Back or Points,Cents per point:Sign-up Bonus flag: SUB spend,reward,months:Category flag: category name-percentage back/point multiplier

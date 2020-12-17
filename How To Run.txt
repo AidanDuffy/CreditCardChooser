@@ -1,0 +1,28 @@
+Aidan Duffy
+Class: CS 521 - Fall 2
+Date: December 15, 2020
+Final Project
+
+How to Run the Program:
+
+First, please ensure you have an empty "user cards.txt" as well as the fully
+populated "Credit Card Database.txt" file. From here, please run the main
+method the main.py file. The project has a number of subroutines, so please add
+a card or two to your wallet, then feel free to try any of the other options
+from the main menu. Any time you want to start over (for instance, if you want
+to try something with a card that has an active sign up bonus vs when it is
+deactivated) just remove everything from the user cards file. This populates the
+user's wallet everytime the program runs. A few things to note: when entering in
+a card issuer, please make sure case and spelling matches the database. For
+instance, I used "AMEX" instead of "American Express". Also, any time a function
+asks for an input to be done Issuer,Card Name, please ensure you do not use a
+space after the comma for proper functionality(the program will handle the error
+but it just won't give you your desired output). Further, when it asks for a Y/N
+please just input those letters with that case. I plan to add y,n, yes,no, etc.
+as options in the future -- along with spaces after commas -- in the future.
+Finally, anytime you enter 0 on the main menu, please ensure your user card text
+file has been populated with accurate information that you provided while
+running the program. Ultimately, I tried to make most of the entry pretty
+intuitive for the user, but if you find anything beyond errors, such as any
+confusing behavior, please include in the report as I would love to fix it!
+Thanks again for this really cool opportunity, and I hope you enjoy the program.
