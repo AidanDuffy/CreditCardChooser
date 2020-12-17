@@ -33,7 +33,7 @@ class CreditCard:
         or cash card
         :param cpp: is the cents per point (default to 1 for cash back)
         """
-        self.__holder = holder
+        self.__set_holder_name(holder)
         self.network = network
         self.issuer = issuer
         self.card_name = name
@@ -89,7 +89,7 @@ class CreditCard:
         """
         return self.__holder
 
-    def set_holder_name(self, holder):
+    def __set_holder_name(self, holder):
         """
         Sets the card holder's name
         :return: none
