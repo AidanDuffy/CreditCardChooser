@@ -391,7 +391,7 @@ def decider(wallet):
                     if value == card.check_categories("else"):
                         value = card.check_categories(
                             "online shopping")
-            value += sub.get_return_on_spend()
+            value += sub.get_return_on_spend()*100
             if value > best[0]:
                 best[0] = value
                 best[1] = card
