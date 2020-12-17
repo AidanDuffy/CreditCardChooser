@@ -7,14 +7,17 @@ Description: This is a user-defined class, as requested in the project
 guidelines that is for the creation of a signup bonus (or SUB) object.
 """
 
+import wallet
 
 class SignUpBonus:
 
-    def __init__(self, info):
+    def __init__(self, info, card):
         """
         This creates a new sign-up bonus object given a string of info.
         :param info: is the SUB info provided by the database file or user.
+        :param card: is the card this SUB is attached to.
         """
+        self.card = card
         if info == "False":
             self.active = False
             self.minimum = 0

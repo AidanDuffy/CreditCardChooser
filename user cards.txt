@@ -1,2 +1,0 @@
-Aidan:AMEX:AMEX:Gold:P,1.25:SUB:False:Categories:dining-4.,grocery-4.,travel(AMEX)-3.,else-1:999:0
-Aidan:Mastercard:Chase:Freedom Flex:P,1.0:SUB:False:Categories:quarterly-5.,travel(Chase)-5.,dining-3.,drugstores-3.,else-1:99:0

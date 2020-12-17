@@ -4,12 +4,11 @@ Class: CS 521 - Fall 2
 Date: December 15, 2020
 Final Project
 Description: This is the main project file for the credit card choosing program
-Future Goals: 1. Add a Wallet Class for additional accessor/mutator methods.
-2. Add a function that prints out all a user's cards
-3. Incorporate naming schemes to separate user info.
-4. Implement an actual user interface for easier usage
-5. Implement a way to scrape blogs to find the most up to date CPP data.
-6. Implement a way to pull SUB data as well as quarterly category data for the
+Future Goals: 1. Add a function that prints out all a user's cards
+2. Incorporate naming schemes to separate user info.
+3. Implement an actual user interface for easier usage
+4. Implement a way to scrape blogs to find the most up to date CPP data.
+5. Implement a way to pull SUB data as well as quarterly category data for the
 affected cards.
 """
 
@@ -28,7 +27,6 @@ def save_user_cards(wallet, user_data):
         user_data.write(card.__repr__() + "\n")
 
 
-# noinspection PyBroadException
 def add_card(wallet, template_wallet):
     """
     This is adds a new card to the user wallet from the template_wallet, but
@@ -168,12 +166,14 @@ def decider(wallet):
         found.append(best_card.get_issuer())
         found.append(best_card.get_card_name())
         found.append(category)
-        found.append(best_card.check_categories(category))
+        value = best_card.check_categories(category)
+        if best_card.get_sign_up_bonus().check_active():
+            value += best_card.get_sign_up_bonus().get_return_on_spend() * 100
+        found.append(value)
         return found
     best = list()
     best.append(0)
     best.append(0)
-    tie = list()
     """
     Here, depending on whether of not there are active sign-up bonuses, the
     function will go through each card in the wallet to find the best value.
@@ -182,7 +182,10 @@ def decider(wallet):
     category i.e. {"dining":AMEX Gold}, and whenever new cards are added, it
     will check then so as to prevent algorithmic backups which occur now.
     """
-    for card in sub_cards:
+    card_list = wallet.get_cards()
+    if subs:
+        card_list = sub_cards
+    for card in card_list:
         sub = card.get_sign_up_bonus()
         value = card.check_categories(category)
         if "(" in category:
@@ -195,36 +198,20 @@ def decider(wallet):
             if "IHG" in category:
                 if value != 25 * .6:
                     value = card.check_categories("travel")
-            if "Whole Foods" in category:
-                if value == card.check_categories("else"):
-                    value = card.check_categories("grocery")
-            if "Amazon" in category:
-                if value == card.check_categories("else"):
-                    value = card.check_categories("online shopping")
         if subs:
             value += sub.get_return_on_spend() * 100
         if value > best[0]:
             best[0] = value
             best[1] = card
-            tie = list()
-        elif value == best[0]:
-            tie.append(card)
-            tie.append(best[1])
     if subs:
         print("Note: This recommendation is made because"
               " of a sign-up bonus, not only multipliers!")
     found = list()
-    if len(tie) == 0:
-        card = best[1]
-        found.append(card.get_issuer())
-        found.append(card.get_card_name())
-        found.append(category)
-        found.append(best[0])
-    else:
-        found.append("tie")
-        found.append(tie)
-        found.append(category)
-        found.append(best[0])
+    card = best[1]
+    found.append(card.get_issuer())
+    found.append(card.get_card_name())
+    found.append(category)
+    found.append(best[0])
     return found
 
 
@@ -279,7 +266,7 @@ def decider_menu():
                 continue
         elif menu_value == 2:
             print("You have selected Travel! Please select a subcategory:\n"
-                  "\t1. Flights\n\t2. Hotels\n\t3. Chase\n\t4. AMEX")
+                  "\t1. General\n\t2. IHG Hotel\n\t3. Chase\n\t4. AMEX")
             subcategory = input("Please enter an above value, anything else "
                                 "to leave this category: ")
             try:
@@ -287,13 +274,7 @@ def decider_menu():
                 if subcategory == 1:
                     return "travel"
                 elif subcategory == 2:
-                    print("You have selected Hotel! Are you booking:\n\t1."
-                          "With an IHG partner\n\t2. Elsewhere")
-                    subcategory = int(input("Option: "))
-                    if subcategory == 1:
-                        return "hotel(IHG)"
-                    else:
-                        return "travel"
+                    return "hotel(IHG)"
                 elif subcategory == 3:
                     return "travel(Chase)"
                 elif subcategory == 4:
@@ -363,7 +344,7 @@ def check_balance(wallet):
     card_parts = list(which_card.split(","))
     found = False
     if len(card_parts) == 2:
-        for card in wallet:
+        for card in wallet.get_cards():
             if card.get_issuer() == card_parts[0]:
                 if card.get_card_name() == card_parts[1]:
                     found = card_parts
@@ -389,7 +370,7 @@ def make_payment(wallet):
         return found
     card_parts = list(which_card.split(","))
     if len(card_parts) == 2:
-        for card in wallet:
+        for card in wallet.get_cards():
             if card.get_issuer() == card_parts[0]:
                 if card.get_card_name() == card_parts[1]:
                     card.pay_off_card(amount)
@@ -412,7 +393,7 @@ def check_sign_up_bonus(wallet):
     card_parts = list(which_card.split(","))
     found = False
     if len(card_parts) == 2:
-        for card in wallet:
+        for card in wallet.get_cards():
             if card.get_issuer() == card_parts[0]:
                 if card.get_card_name() == card_parts[1]:
                     found = list()
@@ -435,7 +416,7 @@ def check_cents_per_point(wallet):
     card_parts = list(which_card.split(","))
     found = False
     if len(card_parts) == 2:
-        for card in wallet:
+        for card in wallet.get_cards():
             if card.get_issuer() == card_parts[0]:
                 if card.get_card_name() == card_parts[1]:
                     found = card_parts
@@ -492,14 +473,6 @@ def main_menu(template_wallet, wallet):
                           "the", card_issuer, card_name, "for all purchases!")
                 else:
                     reward = function_success[3]
-                    if function_success[0] == "tie":
-                        print("It's a tie for purchases in the", category,
-                              "category. You should see a", reward, "percent",
-                              "return with the following cards:")
-                        for card in function_success[1]:
-                            print("\t", card.get_issuer(),
-                                  card.get_card_name())
-                        continue
                     print("Success! Use the", card_issuer, card_name, "for",
                           "purchases in the", category, "category. You "
                                                         "should see a", reward,

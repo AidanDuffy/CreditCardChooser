@@ -37,7 +37,7 @@ class CreditCard:
         self.network = network
         self.issuer = issuer
         self.card_name = name
-        self.sub = sub.SignUpBonus(sub_info)
+        self.sub = sub.SignUpBonus(sub_info,self)
         self.categories = self.build_categories(categories)
         self.balance = int(balance)
         self.age = int(age)

@@ -6,7 +6,7 @@ Visa:Chase:Amazon Prime Rewards:C:SUB:100,0,0:Categories:online shopping(Amazon)
 Mastercard:Chase:IHG Rewards Club Premier:P,0.6:SUB:140000,3000,3:Categories:hotel(IHG)-25,gas-2,grocery-2,dining-2,else-1
 Mastercard:Citi:Double Cash:C:SUB:0,0,0:Categories:else-2
 AMEX:AMEX:Gold:P,1.25:SUB:60000,4000,6:Categories:dining-4,grocery-4,travel(AMEX)-3,else-1
-AMEX:AMEX:Platinum:P,1.5:SUB:75000,4000,3:Categories:travel(AMEX)-5,travel-5,else-1
+AMEX:AMEX:Platinum:P,1.25:SUB:100000,4000,3:Categories:travel(AMEX)-5,travel-5,else-1
 AMEX:AMEX:Green:P,1.25:SUB:45000,2000,3:Categories:dining-3,travel-3,transit-3,else-1
 AMEX:AMEX:Blue Cash Preferred:C:SUB:300,3000,6:Categories:grocery-6,streaming-6,transit-3,gas-3,else-1
 Discover:Discover:Discover It:C:SUB:0,0,0:Categories:quarterly-5,else-1

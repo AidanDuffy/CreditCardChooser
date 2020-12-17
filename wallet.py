@@ -8,12 +8,13 @@ guidelines that is for the creation of wallet objects.
 """
 
 import credit_card
+import sign_up_bonus
 
 
 class Wallet:
     __main_categories = ["dining", "grocery", "travel", "transit", "gas",
-                         "online shopping", "else", "drugstores", "Amazon",
-                         "PayPal"]
+                         "online shopping", "else", "drugstores",
+                         "online shopping(Amazon)", "grocery(Whole Foods)"]
 
     def __init__(self):
         self.cards = list()
@@ -60,6 +61,9 @@ class Wallet:
             else:
                 current_card_value = current_card.check_categories(category)
                 added_card_value = card.check_categories(category)
+                sub = card.get_sign_up_bonus()
+                if sub.check_active():
+                    added_card_value += sub.get_return_on_spend() * 100
                 if added_card_value > current_card_value:
                     self.best[category] = card
 
