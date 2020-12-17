@@ -43,7 +43,7 @@ def add_card(wallet, template_wallet):
     selected = False
     new_card = None
     yes_no = ""
-    for card in template_wallet:
+    for card in template_wallet.get_cards():
         if card.get_issuer() != issuer:
             continue
         while yes_no != "Y" or yes_no != "N":
@@ -118,10 +118,10 @@ def decider(wallet):
     dining card.
     """
     found = False
-    if len(wallet) == 0:
+    if len(wallet.get_cards()) == 0:
         return found
-    elif len(wallet) == 1:
-        card = wallet[0]
+    elif len(wallet.get_cards()) == 1:
+        card = wallet.get_cards()[0]
         found = list()
         found.append(card.get_issuer())
         found.append(card.get_card_name())
@@ -134,7 +134,7 @@ def decider(wallet):
     """
     sub_cards = list()
     subs = False
-    for card in wallet:
+    for card in wallet.get_cards():
         sub = card.get_sign_up_bonus()
         if sub.check_active():
             sub_cards.append(card)
@@ -161,6 +161,15 @@ def decider(wallet):
             break
         else:
             print("Invalid input")
+    main_categories = wallet.get_generic_category_names()
+    if category in main_categories:
+        best_card = wallet.find_best_for_category(category)
+        found = list()
+        found.append(best_card.get_issuer())
+        found.append(best_card.get_card_name())
+        found.append(category)
+        found.append(best_card.check_categories(category))
+        return found
     best = list()
     best.append(0)
     best.append(0)
@@ -466,7 +475,7 @@ def main_menu(template_wallet, wallet):
                 print("It appears we do not currently support the card or "
                       "issuer you are looking for! Check back again later!")
             continue
-        elif len(wallet) == 0:
+        elif len(wallet.get_cards()) == 0:
             print("Try adding a card first!\n")
             continue
         elif menu_value == 2:
@@ -562,7 +571,7 @@ def main(ccdb, user_data):
     wallet = Wallet()
     if len(user.read()) > 0:
         user = open(user_data, "r+")
-        wallet.construct_template_wallet(user)
+        wallet.construct_user_wallet(user)
     main_menu(template_wallet, wallet)
     user = open(user_data, "r+")
     save_user_cards(wallet, user)

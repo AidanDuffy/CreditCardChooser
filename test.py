@@ -143,7 +143,6 @@ def test_decider():
                                    2)
     assert card2.get_sign_up_bonus().check_active()
     wallet.append(card2)
-    print("Won't type anything, will always return card2 as it has the SUB")
     result = decider(wallet)
     assert result[2] == 0
     assert result[1] == "Freedom Flex"

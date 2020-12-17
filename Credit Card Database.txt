@@ -3,7 +3,7 @@ Visa:Chase:Freedom Unlimited:P,1:SUB:20000,500,3:Categories:travel(Chase)-5,dini
 Visa:Chase:Sapphire Preferred:P,1.25:SUB:60000,4000,3:Categories:travel-2,dining-2,else-1
 Visa:Chase:Sapphire Reserve:P,1.5:SUB:50000,4000,3:Categories:travel-3,dining-3,else-1
 Visa:Chase:Amazon Prime Rewards:C:SUB:100,0,0:Categories:online shopping(Amazon)-5,grocery(Whole Foods)-5,else-1
-Mastercard:Chase:IHG Rewards Club Premier:P,0.6:SUB:140000,3000,3:Categories:hotel(IHG)-25,gas-2,grocery-2,restaurant-2,else-1
+Mastercard:Chase:IHG Rewards Club Premier:P,0.6:SUB:140000,3000,3:Categories:hotel(IHG)-25,gas-2,grocery-2,dining-2,else-1
 Mastercard:Citi:Double Cash:C:SUB:0,0,0:Categories:else-2
 AMEX:AMEX:Gold:P,1.25:SUB:60000,4000,6:Categories:dining-4,grocery-4,travel(AMEX)-3,else-1
 AMEX:AMEX:Platinum:P,1.5:SUB:75000,4000,3:Categories:travel(AMEX)-5,travel-5,else-1
